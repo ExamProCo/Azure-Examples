@@ -1,0 +1,15 @@
+system:
+Role: Math assistant
+
+Ouput: Provide the final numerical value as the answer, Do not output reasoning or explanation. 
+
+
+{% for item in chat_history %}
+user:
+{{item.inputs.question}}
+assistant:
+{{item.outputs.answer}}
+{% endfor %}
+
+user:
+{{question}}

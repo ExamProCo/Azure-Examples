@@ -1,0 +1,56 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+  python_requirements_txt: requirements.txt
+inputs:
+  chat_history:
+    type: list
+    is_chat_history: true
+    default: []
+  question:
+    type: string
+    is_chat_input: true
+    default: Elizabeth eats a healthy, balanced breakfast b times a week. Madison
+      sometimes skips breakfast. In total, Madison eats 3 fewer breakfasts a
+      week than Elizabeth. Write an expression that shows how many times a week
+      Madison eats breakfast.
+outputs:
+  answer:
+    type: string
+    reference: ${format_output.output}
+    is_chat_output: true
+nodes:
+- name: chat
+  type: llm
+  source:
+    type: code
+    path: chat.jinja2
+  inputs:
+    deployment_name: gpt-35-turbo
+    max_tokens: 256
+    temperature: 0.7
+    chat_history: ${inputs.chat_history}
+    question: ${inputs.question}
+    response_format:
+      type: text
+  connection: to_replace_with_connection_name
+  api: chat
+- name: llm_extract_answer
+  type: llm
+  source:
+    type: code
+    path: llm_extract_answer.jinja2
+  inputs:
+    deployment_name: gpt-35-turbo
+    response_format:
+      type: text
+    chat_history: ${inputs.chat_history}
+    question: ${chat.output}
+  connection: to_replace_with_connection_name
+  api: chat
+- name: format_output
+  type: python
+  source:
+    type: code
+    path: format_output.py
+  inputs:
+    input1: ${llm_extract_answer.output}

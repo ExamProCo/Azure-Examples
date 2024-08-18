@@ -1,0 +1,5 @@
+chat_history	question
+[]	Ariel was playing basketball. 1 of her shots went in the hoop. 2 of her shots did not go in the hoop. How many shots were there in total?
+[]	"Adrianna has 10 pieces of gum to share with her friends. There wasn�t enough gum for all her friends, so she went to the store to get 3 more pieces of gum. How many pieces of gum does Adrianna have now?"
+[]	"Adrianna has 10 pieces of gum to share with her friends. There wasn�t enough gum for all her friends, so she went to the store and got 70 pieces of strawberry gum and 10 pieces of bubble gum. How many pieces of gum does Adrianna have now?"
+[]	The restaurant has 175 normal chairs and 20 chairs for babies. How many chairs does the restaurant have in total?
